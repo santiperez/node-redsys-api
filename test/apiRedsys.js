@@ -3,6 +3,7 @@ var sinon = require('sinon');
 var sinon_chai = require('sinon-chai');
 var Redsys = require('../src/apiRedsys').Redsys;
 var requestParams=require('./data/request.json');
+var responseParams=require('./data/response.json');
 var settings=require('./data/settings.json');
 console.log(requestParams.DS_MERCHANT_ORDER);
 
@@ -36,8 +37,31 @@ describe("Redsys API", function() {
     describe("Manage Merchant Parameters", function() {
         var params='eyJEU19NRVJDSEFOVF9BTU9VTlQiOiIxNDUiLCJEU19NRVJDSEFOVF9PUkRFUiI6IjEiLCJEU19NRVJDSEFOVF9NRVJDSEFOVENPREUiOiI5OTkwMDg4ODEiLCJEU19NRVJDSEFOVF9DVVJSRU5DWSI6Ijk3OCIsIkRTX01FUkNIQU5UX1RSQU5TQUNUSU9OVFlQRSI6IjAiLCJEU19NRVJDSEFOVF9URVJNSU5BTCI6Ijg3MSIsIkRTX01FUkNIQU5UX01FUkNIQU5UVVJMIjoiIiwiRFNfTUVSQ0hBTlRfVVJMT0siOiIiLCJEU19NRVJDSEFOVF9VUkxLTyI6IiJ9';
 
+        var decodedParams={ Ds_Date: '09/11/2015',
+            Ds_Hour: '18:03',
+            Ds_SecurePayment: '0',
+            Ds_Card_Country: '724',
+            Ds_Amount: '145',
+            Ds_Currency: '978',
+            Ds_Order: '0069',
+            Ds_MerchantCode: '999008881',
+            Ds_Terminal: '871',
+            Ds_Response: '0000',
+            Ds_MerchantData: '',
+            Ds_TransactionType: '0',
+            Ds_ConsumerLanguage: '1',
+            Ds_AuthorisationCode: '082150' }
+
         it("Create Merchant Parameters", function() {
             return this.redsys.createMerchantParameters(requestParams).should.equal(params);
         });
+
+        it("Decode Merchant Parameters", function() {
+            return this.redsys.decodeMerchantParameters(responseParams.Ds_MerchantParameters).should.eql(decodedParams);
+        });
+
+        /*it("createMerchantSignatureNotif", function() {
+            return this.redsys.createMerchantSignatureNotif(settings.key,responseParams.Ds_MerchantParameters).should.eql('hi');
+        });*/
     });
 });
