@@ -12,7 +12,9 @@ Redsys = (function() {
         this.mac256 = bind(this.mac256, this);
         this.createMerchantParameters = bind(this.createMerchantParameters, this);
         this.decodeMerchantParameters = bind(this.decodeMerchantParameters, this);
+        this.createMerchantSignature=bind(this.createMerchantSignature, this);
         this.createMerchantSignatureNotif=bind(this.createMerchantSignatureNotif, this);
+        this.merchantSignatureIsValid=bind(this.merchantSignatureIsValid, this);
     }
 
     Redsys.prototype.encrypt3DES = function (str,key) {
@@ -54,12 +56,24 @@ Redsys = (function() {
         return res;
     }
 
-    Redsys.prototype.createMerchantSignatureNotif = function (key, data){
-        data = this.decodeMerchantParameters(data);
-        var orderId=(data.Ds_Order)?data.Ds_Order:data.DS_ORDER;
+    Redsys.prototype.createMerchantSignature = function (key, data){
+        var _data = this.createMerchantParameters(data);
+        var orderId=(data.Ds_Merchant_Order)?data.Ds_Merchant_Order:data.DS_MERCHANT_ORDER;
+        console.log(orderId);
         key = this.encrypt3DES(orderId, key);
-        var res = this.mac256(new Buffer(JSON.stringify(data)).toString('base64'), key);
-        return res;
+        return this.mac256(_data, key);
+    }
+
+    Redsys.prototype.createMerchantSignatureNotif = function (key, data){
+        var _data = this.decodeMerchantParameters(data);
+        var orderId=(_data.Ds_Order)?_data.Ds_Order:_data.DS_ORDER;
+        key = this.encrypt3DES(orderId, key);
+        var res= this.mac256(data, key);
+        return base64url.encode(res,'base64');
+    }
+
+    Redsys.prototype.merchantSignatureIsValid = function (signA, signB){
+        return base64url.decode(signA,'base64')==base64url.decode(signB,'base64');
     }
 
     function zeroPad(buf, blocksize) {
