@@ -1,7 +1,6 @@
 {
   "name": "node-redsys-api",
   "version": "0.0.1",
-  "private": true,
   "dependencies": {
     "grunt": "^0.4.2",
     "sinon-chai": "^2.5.0",
@@ -10,6 +9,6 @@
     "grunt-contrib-watch": "^0.5.3",
     "grunt-simple-mocha": "^0.4.0",
     "base64url":"^1.0.5",
-    "html-entities":"*"
+    "html-entities":"^1.2.0"
   }
 }
