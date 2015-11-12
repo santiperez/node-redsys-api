@@ -1,14 +1,35 @@
 {
   "name": "node-redsys-api",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "dependencies": {
+    "base64url":"^1.0.5",
+    "html-entities":"^1.2.0"
+  },
+  "devDependencies": {
     "grunt": "^0.4.2",
     "sinon-chai": "^2.5.0",
     "sinon": "^1.8.2",
     "chai": "^1.9.0",
     "grunt-contrib-watch": "^0.5.3",
-    "grunt-simple-mocha": "^0.4.0",
-    "base64url":"^1.0.5",
-    "html-entities":"^1.2.0"
-  }
+    "grunt-simple-mocha": "^0.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/santiperez/node-redsys-api"
+  },
+  "keywords": [
+    "tpv",
+    "redsys",
+    "credit card",
+    "payment",
+    "servired",
+    "4b",
+    "HMAC SHA256"
+  ],
+  "author": "Santi Pérez <s.perez.fernandez@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/santiperez/node-redsys-api/issues"
+  },
+  "homepage": "https://github.com/santiperez/node-redsys-api"
 }
