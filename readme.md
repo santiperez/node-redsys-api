@@ -11,11 +11,11 @@ Redsys api implementation with new the key-hashed message autentication code (HM
 
 ### Tests
 	
-	grunt test<br />
+	grunt test
 
 ## Authors
 
-	Santi Pérez powered by [Ondho](http://www.ondho.com).
+	Santi Pérez powered by Ondho (http://www.ondho.com).
 
 ## License
 
