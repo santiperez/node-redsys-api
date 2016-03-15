@@ -31,5 +31,10 @@
   "bugs": {
     "url": "https://github.com/santiperez/node-redsys-api/issues"
   },
+  "standard": {
+    "globals": [
+      "desccribe"
+    ]
+  },
   "homepage": "https://github.com/santiperez/node-redsys-api"
 }
