@@ -1,1 +1,2 @@
-module.exports = require('./src/apiRedsys.js');
+'use strict';
+module.exports = require('./src/api-redsys.js');
