@@ -2,7 +2,7 @@
   "name": "node-redsys-api",
   "version": "0.0.3",
   "dependencies": {
-    "base64url": "^1.0.5",
+    "base64url": "^2.0.0",
     "html-entities": "^1.2.0"
   },
   "devDependencies": {
