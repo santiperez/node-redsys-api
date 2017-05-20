@@ -55,7 +55,7 @@ console.log('TPV payment KO');
 	
 ## Alternative implementations
 
-You can downloaded here: [Java, PHP, .NET implementations](http://www.redsys.es/#descargas)
+You can download [Java, PHP, .NET implementations](http://www.redsys.es/#descargas)
 
 ## Authors
 
