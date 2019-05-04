@@ -8,13 +8,13 @@ Node.js Redsys api implementation with new the key-hashed message authentication
 	
 ## Examples
 ```
-var Redsys = require('node-redsys-api').Redsys;
+const Redsys = require('node-redsys-api').Redsys;
 ...
 //Snippet to obtain the signature & merchantParameters
 function createPayment(description, total, titular, orderId, paymentId)
 {
-    var redsys = new Redsys();
-    var mParams = {
+    const redsys = new Redsys();
+    const mParams = {
         "DS_MERCHANT_AMOUNT":common.round(total*100).toString(),
         "DS_MERCHANT_ORDER":paymentId,
         "DS_MERCHANT_MERCHANTCODE":tpvInfo.fucCode,
@@ -30,12 +30,12 @@ function createPayment(description, total, titular, orderId, paymentId)
 }
 
 //Snippet to process the TPV callback
-var merchantParams = tpvResponse.Ds_MerchantParameters || tpvResponse.DS_MERCHANTPARAMETERS;
-var signature = tpvResponse.Ds_Signature || tpvResponse.DS_SIGNATURE;
+const merchantParams = tpvResponse.Ds_MerchantParameters || tpvResponse.DS_MERCHANTPARAMETERS;
+const signature = tpvResponse.Ds_Signature || tpvResponse.DS_SIGNATURE;
 
-var merchantParamsDecoded = redsys.decodeMerchantParameters(merchantParams);
-var merchantSignatureNotif = redsys.createMerchantSignatureNotif(tpvInfo.secret, merchantParams);
-var dsResponse = parseInt(merchantParamsDecoded.Ds_Response || merchantParamsDecoded.DS_RESPONSE);
+const merchantParamsDecoded = redsys.decodeMerchantParameters(merchantParams);
+const merchantSignatureNotif = redsys.createMerchantSignatureNotif(tpvInfo.secret, merchantParams);
+const dsResponse = parseInt(merchantParamsDecoded.Ds_Response || merchantParamsDecoded.DS_RESPONSE);
 
 if (redsys.merchantSignatureIsValid(signature , merchantSignatureNotif) && dsResponse > -1 && dsResponse < 100 ) {
 console.log('TPV payment is OK');
