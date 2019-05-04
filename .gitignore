@@ -2,3 +2,10 @@
 node_modules/
 npm-debug.log
 npm
+package-lock.json
+yarn.lock
+.vscode/
+*~
+*.swp
+*.sublime*
+.DS_STORE

@@ -2,10 +2,9 @@
 
 function zeroPad(buf, blocksize) {
   if (typeof buf === 'string') {
-    buf = new Buffer(buf, 'utf8');
+    buf = Buffer.from(buf, 'utf8');
   }
-  var pad = new Buffer((blocksize - (buf.length % blocksize)) % blocksize);
-  pad.fill(0);
+  var pad = Buffer.alloc((blocksize - (buf.length % blocksize)) % blocksize, 0);
   return Buffer.concat([buf, pad]);
 }
 
@@ -21,6 +20,6 @@ function zeroUnpad(buf, blocksize) {
 }
 
 module.exports = {
-  zeroPad: zeroPad,
-  zeroUnpad: zeroUnpad
+  zeroPad,
+  zeroUnpad,
 };
