@@ -11,9 +11,10 @@ class Redsys {
     const iv = Buffer.alloc(8, 0);
     const cipher = crypto.createCipheriv('des-ede3-cbc', secretKey, iv);
     cipher.setAutoPadding(false);
-    return cipher.update(zeroPad(str, 8), 'utf8', 'base64') +
-     cipher.final('base64');
-  }
+    const en_key = cipher.update(zeroPad(str, 8), 'utf8', 'binary') + cipher.final('binary');
+    const l = Math.ceil(str.length / 8) * 8;
+    return Buffer.from(en_key.substr(0, l), 'binary').toString('base64');
+}
 
   decrypt3DES(str, key) {
     const secretKey = Buffer.from(key, 'base64');
