@@ -1,4 +1,4 @@
-# node-redysys-api
+# node-redsys-api
 
 Node.js Redsys api implementation with new the key-hashed message authentication code (HMAC) SHA256 for the virtual payment gateway integration. This is a node.js port of the PHP API provided by [Redsys](http://www.redsys.es/)
 
