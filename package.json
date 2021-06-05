@@ -2,12 +2,19 @@
   "name": "node-redsys-api",
   "version": "0.0.5",
   "dependencies": {
-    "base64url": "^3.0.1"
+    "base64url": "3.0.1"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
-    "eslint": "^5.16.0",
-    "mocha": "^6.1.4"
+    "chai": "4.3.4",
+    "eslint": "6.8.0",
+    "eslint-config-airbnb-base": "14.2.1",
+    "eslint-config-prettier": "6.11.0",
+    "eslint-plugin-import": "2.23.4",
+    "eslint-plugin-prettier": "3.4.0",
+    "mocha": "8.4.0",
+    "pre-commit": "1.2.2",
+    "prettier": "2.3.1",
+    "rewire": "5.0.0"
   },
   "repository": {
     "type": "git",
@@ -23,12 +30,19 @@
     "HMAC SHA256"
   ],
   "scripts": {
-    "test": "mocha ./test/*.js"
+    "lint": "eslint .",
+    "units": "mocha ./test/*.js",
+    "test": "npm run lint && npm run units",
+    "security": "npm audit"
   },
   "author": "Santi Pérez <santi.perez.fernandez@gmail.com>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/santiperez/node-redsys-api/issues"
   },
-  "homepage": "https://github.com/santiperez/node-redsys-api"
+  "homepage": "https://github.com/santiperez/node-redsys-api",
+  "precommit": [
+    "test",
+    "security"
+  ]
 }
