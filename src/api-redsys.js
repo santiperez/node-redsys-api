@@ -1,5 +1,5 @@
-'use strict';
-
+// TODO Refactor and remove class in 1.0.0 version
+/* eslint-disable class-methods-use-this */
 const crypto = require('crypto');
 const base64url = require('base64url');
 
@@ -11,8 +11,8 @@ class Redsys {
     const iv = Buffer.alloc(8, 0);
     const cipher = crypto.createCipheriv('des-ede3-cbc', secretKey, iv);
     cipher.setAutoPadding(false);
-    return cipher.update(zeroPad(str, 8), 'utf8', 'base64') +
-     cipher.final('base64');
+    return cipher.update(zeroPad(str, 8), 'utf8', 'base64')
+     + cipher.final('base64');
   }
 
   decrypt3DES(str, key) {
@@ -20,8 +20,8 @@ class Redsys {
     const iv = Buffer.alloc(8, 0);
     const cipher = crypto.createDecipheriv('des-ede3-cbc', secretKey, iv);
     cipher.setAutoPadding(false);
-    const res = cipher.update(zeroUnpad(str, 8), 'base64', 'utf8') +
-     cipher.final('utf8');
+    const res = cipher.update(zeroUnpad(str, 8), 'base64', 'utf8')
+     + cipher.final('utf8');
     return res.replace(/\0/g, '');
   }
 
@@ -36,32 +36,34 @@ class Redsys {
   }
 
   decodeMerchantParameters(data) {
-    const _data = JSON.parse(base64url.decode(data, 'utf8'));
+    const decodedData = JSON.parse(base64url.decode(data, 'utf8'));
     const res = {};
-    for (var name in _data) {
-      res[decodeURIComponent(name)] = decodeURIComponent(_data[name]);
-    }
+    Object.keys(decodedData).forEach((param) => {
+      res[decodeURIComponent(param)] = decodeURIComponent(decodedData[param]);
+    });
     return res;
   }
 
   createMerchantSignature(key, data) {
-    const _data = this.createMerchantParameters(data);
+    const merchantParameters = this.createMerchantParameters(data);
     const orderId = data.Ds_Merchant_Order || data.DS_MERCHANT_ORDER;
     const orderKey = this.encrypt3DES(orderId, key);
-    return this.mac256(_data, orderKey);
+
+    return this.mac256(merchantParameters, orderKey);
   }
 
   createMerchantSignatureNotif(key, data) {
-    const _data = this.decodeMerchantParameters(data);
-    const orderId = _data.Ds_Order || _data.DS_ORDER;
+    const merchantParameters = this.decodeMerchantParameters(data);
+    const orderId = merchantParameters.Ds_Order || merchantParameters.DS_ORDER;
     const orderKey = this.encrypt3DES(orderId, key);
+
     const res = this.mac256(data, orderKey);
     return base64url.encode(res, 'base64');
   }
 
   merchantSignatureIsValid(signA, signB) {
-    return base64url.decode(signA, 'base64') ===
-     base64url.decode(signB, 'base64');
+    return base64url.decode(signA, 'base64')
+     === base64url.decode(signB, 'base64');
   }
 }
 
