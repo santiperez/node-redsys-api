@@ -10,7 +10,7 @@ Node.js Redsys api implementation with new the key-hashed message authentication
 
 ### Obtain signature and merchant parameters
 
-`````
+```js
 const Redsys = require('node-redsys-api').Redsys;
 
 function createPayment(description, total, titular, orderId, paymentId) {
@@ -29,11 +29,11 @@ function createPayment(description, total, titular, orderId, paymentId) {
 
   return { signature: redsys.createMerchantSignature(TPVConfig.secret, mParams), merchantParameters: redsys.createMerchantParameters(mParams), raw: mParams };
 }
-`````
+```
 
 ### Process TPV callback
 
-`````
+```js
 const merchantParams = response.Ds_MerchantParameters || response.DS_MERCHANTPARAMETERS;
 const signature = response.Ds_Signature || response.DS_SIGNATURE;
 
@@ -48,7 +48,7 @@ if (redsys.merchantSignatureIsValid(signature, merchantSignatureNotif) && dsResp
 /* 'TPV payment is KO;
 ... */
 }
-`````
+```
 
 ## Tests
 	
