@@ -1,5 +1,5 @@
 function zeroPad(buf, blocksize) {
-  const buffer = typeof buf === 'string' ? Buffer.from(buf, 'utf8') : buf;
+  const buffer = typeof buf === 'string' ? Buffer.from(buf, 'utf8') : Buffer.from(buf.toString(), 'utf8');
   const pad = Buffer.alloc((blocksize - (buffer.length % blocksize)) % blocksize, 0);
   return Buffer.concat([buffer, pad]);
 }
