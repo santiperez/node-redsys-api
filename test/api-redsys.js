@@ -23,6 +23,11 @@ describe('Node Redsys API tests', () => {
       expect(this.redsys.decrypt3DES(encryptedText, settings.key))
         .to.be.equals(requestParams.DS_MERCHANT_ORDER);
     });
+    it('Encrypt Merchant order does not crash when order is a number', function() {
+      const merchantOrder = 1;
+      expect(this.redsys.encrypt3DES(merchantOrder, settings.key))
+        .to.be.equals(encryptedText);
+    })
   });
 
   describe('SHA256 algorithm', () => {

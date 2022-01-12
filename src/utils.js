@@ -3,6 +3,8 @@
 function zeroPad(buf, blocksize) {
   if (typeof buf === 'string') {
     buf = Buffer.from(buf, 'utf8');
+  } else {
+    buf = Buffer.from(buf.toString(), 'utf8')
   }
   var pad = Buffer.alloc((blocksize - (buf.length % blocksize)) % blocksize, 0);
   return Buffer.concat([buf, pad]);
