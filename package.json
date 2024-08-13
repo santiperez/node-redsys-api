@@ -35,7 +35,7 @@
     "test": "npm run lint && npm run units",
     "security": "npm audit"
   },
-  "author": "Santi Pérez <santi.perez.fernandez@gmail.com>",
+  "author": "Santi Pérez",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/santiperez/node-redsys-api/issues"
