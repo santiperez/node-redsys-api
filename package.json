@@ -6,7 +6,7 @@
   },
   "devDependencies": {
     "chai": "4.3.4",
-    "eslint": "6.8.0",
+    "eslint": "9.32.0",
     "eslint-config-airbnb-base": "14.2.1",
     "eslint-config-prettier": "6.11.0",
     "eslint-plugin-import": "2.23.4",
@@ -14,7 +14,7 @@
     "mocha": "8.4.0",
     "pre-commit": "1.2.2",
     "prettier": "2.3.1",
-    "rewire": "5.0.0"
+    "rewire": "9.0.0"
   },
   "repository": {
     "type": "git",
